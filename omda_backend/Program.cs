@@ -1,4 +1,10 @@
+using UserStoreApi.Models;
+using UserStoreApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<UserStoreDatabaseSettings>(builder.Configuration.GetSection("UserStoreDatabase"));
+builder.Services.AddSingleton<UsersService>();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,28 +22,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/users", async (UsersService usersService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var users = await usersService.GetAsync();
+    return Results.Ok(users);
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/users/{id:length(24)}", async (string id, UsersService usersService) =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-       new WeatherForecast
-       (
-           DateTime.Now.AddDays(index),
-           Random.Shared.Next(-20, 55),
-           summaries[Random.Shared.Next(summaries.Length)]
-       ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var user = await usersService.GetAsync(id);
+    return user is not null ? Results.Ok(user) : Results.NotFound();
+});
+
+app.MapPost("/users", async (User user, UsersService usersService) =>
+{
+    await usersService.CreateAsync(user);
+    return Results.Created($"/users/{user.Id}", user);
+});
 
 app.Run();
-
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
