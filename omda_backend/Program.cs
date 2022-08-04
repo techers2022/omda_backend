@@ -31,6 +31,7 @@ app.MapGet("/users", async (UsersService usersService) =>
 app.MapGet("/users/{id:length(24)}", async (string id, UsersService usersService) =>
 {
     var user = await usersService.GetAsync(id);
+
     return user is not null ? Results.Ok(user) : Results.NotFound();
 });
 
