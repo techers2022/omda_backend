@@ -1,9 +1,10 @@
-using UserStoreApi.Models;
-using UserStoreApi.Services;
+using OMDA.Database;
+using OMDA.Services;
+using OMDA.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<UserStoreDatabaseSettings>(builder.Configuration.GetSection("UserStoreDatabase"));
+builder.Services.Configure<DatabaseConnectionSettings>(builder.Configuration.GetSection("Database"));
 builder.Services.AddSingleton<UsersService>();
 
 // Add services to the container.
@@ -22,22 +23,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/users", async (UsersService usersService) =>
-{
-    var users = await usersService.GetAsync();
-    return Results.Ok(users);
-});
-
-app.MapGet("/users/{id:length(24)}", async (string id, UsersService usersService) =>
-{
-    var user = await usersService.GetAsync(id);
-    return user is not null ? Results.Ok(user) : Results.NotFound();
-});
-
-app.MapPost("/users", async (User user, UsersService usersService) =>
-{
-    await usersService.CreateAsync(user);
-    return Results.Created($"/users/{user.Id}", user);
-});
+app.MapUserEndpoints();
 
 app.Run();

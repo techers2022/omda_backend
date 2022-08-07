@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace UserStoreApi.Models;
+namespace OMDA.Models.Entities;
 
 public class User
 {
