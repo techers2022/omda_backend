@@ -26,6 +26,12 @@ public static class UserEndpoints
             return Results.Created($"/users/{user.Id}", user);
         });
 
+        endpoints.MapGet("/users/{name}", async (string name, UsersService usersService) =>
+        {
+            var user = await usersService.GetByNameAsync(name);
+            return user is not null ? Results.Ok(user) : Results.NotFound();
+        });
+
         return endpoints;
     }
 }
