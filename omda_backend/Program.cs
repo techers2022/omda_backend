@@ -24,5 +24,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapUserEndpoints();
+app.MapLoginEndpoint();
+app.MapRegisterEndpoint();
+app.MapUpdateUserEndpoint();
 
 app.Run();
