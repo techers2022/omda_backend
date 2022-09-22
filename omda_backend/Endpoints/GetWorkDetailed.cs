@@ -21,7 +21,7 @@ public static class GetWorksDetailedEndpoint
                 UserId = work.UserId,
                 Category = work.Category,
                 Price = work.Price,
-                Hours = work.Hours,
+                Duration = work.Duration,
                 Date = work.Date,
                 Description = work.Description,
             };

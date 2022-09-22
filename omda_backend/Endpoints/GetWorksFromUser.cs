@@ -19,7 +19,7 @@ public static class GetWorksFromUserEndpoint
                 UserId = x.UserId,
                 Category = x.Category,
                 Price = x.Price,
-                Hours = x.Hours,
+                Duration = x.Duration,
                 Description = x.Description,
             }).ToList();
 

@@ -10,9 +10,9 @@ public class WorkDetailedModel
 
     public decimal Price { get; set; }
 
-    public byte Hours { get; set; }
+    public string Duration { get; set; } = null!;
 
-    public DateTime Date { get; set; }
+    public string Date { get; set; } = null!;
 
     public string Description { get; set; } = null!;
 }

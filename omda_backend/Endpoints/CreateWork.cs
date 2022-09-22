@@ -17,7 +17,7 @@ public static class CreateWorkEndpoint
                 UserId = model.UserId,
                 Category = model.Category,
                 Price = model.Price,
-                Hours = model.Hours,
+                Duration = model.Duration,
                 Date = model.Date,
                 Description = model.Description,
             };

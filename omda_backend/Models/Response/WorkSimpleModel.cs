@@ -10,7 +10,7 @@ public class WorkSimpleModel
 
     public decimal Price { get; set; }
 
-    public byte Hours { get; set; }
+    public string Duration { get; set; } = null!;
 
     public string Description { get; set; } = null!;
 }
