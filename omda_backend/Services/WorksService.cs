@@ -26,6 +26,16 @@ public class WorksService
         return await _worksCollection.Find(x => x.UserId == userId).ToListAsync();
     }
 
+    public async Task<List<Work>> GetAllAcceptedByUserAsync(string userId)
+    {
+        return await _worksCollection.Find(x => x.AcceptedByUserId == userId).ToListAsync();
+    }
+
+    public async Task<List<Work>> GetAllAsync()
+    {
+        return await _worksCollection.Find(x => x.AcceptedByUserId == null && !x.Closed).ToListAsync();
+    }
+
     public async Task CreateAsync(Work newWork)
     {
         await _worksCollection.InsertOneAsync(newWork);

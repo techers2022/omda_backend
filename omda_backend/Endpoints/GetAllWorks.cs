@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OMDA.Models.Request;
 using OMDA.Models.Response;
 using OMDA.Services;
 
 namespace OMDA.Endpoints;
 
-public static class GetWorksFromUserEndpoint
+public static class GetAllWorks
 {
-    public static IEndpointRouteBuilder MapGetWorksFromUserEndpoint(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapGetAllWorksEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGet("/get-works-from-user/{userId}", async ([FromRoute] string userId, WorksService worksService) =>
+        endpoints.MapGet("/get-all-works", async ([FromServices] WorksService worksService) =>
         {
-            var works = await worksService.GetAllFromUserAsync(userId);
+            var works = await worksService.GetAllAsync();
 
             var response = works.Select(x => new WorkSimpleModel
             {
@@ -22,7 +21,7 @@ public static class GetWorksFromUserEndpoint
                 Price = x.Price,
                 Duration = x.Duration,
                 Location = x.Location,
-                ShortDescription = x.Description.Length > 100 ? $"{x.Description[..97]}..." : x.Description,
+                ShortDescription = x.Description.Length > 50 ? $"{x.Description[..47]}..." : x.Description,
             }).ToList();
 
             return Results.Ok(response);

@@ -15,8 +15,10 @@ public static class CreateWorkEndpoint
             var work = new Work
             {
                 UserId = model.UserId,
+                Title = model.Title,
                 Category = model.Category,
                 Price = model.Price,
+                Location = model.Location,
                 Duration = model.Duration,
                 Date = model.Date,
                 Description = model.Description,

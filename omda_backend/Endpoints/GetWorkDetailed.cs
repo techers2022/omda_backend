@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OMDA.Models.Request;
 using OMDA.Models.Response;
 using OMDA.Services;
 
@@ -19,10 +18,12 @@ public static class GetWorksDetailedEndpoint
             {
                 Id = work.Id,
                 UserId = work.UserId,
+                Title = work.Title,
                 Category = work.Category,
                 Price = work.Price,
                 Duration = work.Duration,
                 Date = work.Date,
+                Location = work.Location,
                 Description = work.Description,
             };
 
