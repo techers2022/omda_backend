@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using OMDA.Database;
+using OMDA.Configurations;
 using OMDA.Models.Entities;
 
 namespace OMDA.Services;

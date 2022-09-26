@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace OMDA.Database;
+namespace OMDA.Configurations;
 
 public class DatabaseConnectionSettings
 {

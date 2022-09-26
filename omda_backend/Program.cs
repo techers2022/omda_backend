@@ -1,10 +1,13 @@
-using OMDA.Database;
+using OMDA.Configurations;
 using OMDA.Services;
 using OMDA.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<DatabaseConnectionSettings>(builder.Configuration.GetSection("Database"));
+builder.Services.Configure<TwilioSettings>(builder.Configuration.GetSection("Twilio"));
+
+builder.Services.AddSingleton<TwilioService>();
 builder.Services.AddSingleton<UsersService>();
 builder.Services.AddSingleton<WorksService>();
 
@@ -31,6 +34,7 @@ app.MapCreateWorkEndpoint();
 app.MapGetWorkDetailedEndpoint();
 app.MapGetWorksFromUserEndpoint();
 app.MapGetAllWorksEndpoint();
+app.MapAcceptWorkEndpoint();
 app.MapUpdateUserEndpoint();
 
 app.Run();
