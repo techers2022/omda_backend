@@ -15,7 +15,6 @@ public static class GetAllWorks
             var response = works.Select(x => new WorkSimpleModel
             {
                 Id = x.Id,
-                UserId = x.UserId,
                 Title = x.Title,
                 Category = x.Category,
                 Price = x.Price,

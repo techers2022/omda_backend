@@ -51,7 +51,7 @@ public class WorksService
 
         var user = await _usersService.GetUserByIdAsync(userId);
 
-        await _twilioService.SendMessageAsync($"OMDA: Anunţul dumneavoastră \"{work.Title}\" a fost acceptat de catre {user.LastName} {user.FirstName}", "+40742678157");
+        await _twilioService.SendMessageAsync($"OMDA: Anunţul dumneavoastră \"{work.Title}\" a fost acceptat de catre {user.LastName} {user.FirstName}", $"+4{user.Phone}");
     }
 
     public async Task CreateAsync(Work newWork)

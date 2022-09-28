@@ -33,6 +33,7 @@ app.MapRegisterEndpoint();
 app.MapCreateWorkEndpoint();
 app.MapGetWorkDetailedEndpoint();
 app.MapGetWorksFromUserEndpoint();
+app.MapGetWorksAcceptedByUserEndpoint();
 app.MapGetAllWorksEndpoint();
 app.MapAcceptWorkEndpoint();
 app.MapUpdateUserEndpoint();

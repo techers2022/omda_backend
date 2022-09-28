@@ -4,8 +4,6 @@ public class WorkSimpleModel
 {
     public string Id { get; set; } = null!;
 
-    public string UserId { get; set; } = null!;
-
     public string Title { get; set; } = null!;
 
     public string Category { get; set; } = null!;
